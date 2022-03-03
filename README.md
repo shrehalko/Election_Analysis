@@ -1,5 +1,5 @@
 # Election_Analysis
-Performing Analysis on Kickstarter data to uncover trends. 
+Performing Analysis on Election data in Colorado. 
 
 ## Table of Contents
 - [Overview of Project](#OverviewProject)
