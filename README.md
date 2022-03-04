@@ -161,9 +161,9 @@ This code can be reused by Election Comission for any election by just changing 
 
 ## <a name="resources"></a> Resources
 [1] [Code for Election Analysis](PyPoll_Challenge.py) <br>
-[2] [Election Data](election_results.csv) <br>
-[3] [Election Results Printed to Command Line](terminal_results.png)  <br>
-[4] [Election Results Saved to Text File](election_results.txt) <br>
+[2] [Election Data](Resources/election_results.csv) <br>
+[3] [Election Results Printed to Command Line](Terminal_results.png)  <br>
+[4] [Election Results Saved to Text File](Analysis/election_results.txt) <br>
 [5] Software: 
 * Python 3.10.2
 * Visual Studio Code 1.64.2
