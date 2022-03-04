@@ -6,7 +6,6 @@ Performing Analysis on Election data in Colorado.
   * [Background](#Background)
   * [Purpose](#purpose)
 - [Pseudo Code](#Pseudocode)
-  * [Analysis based on Category](#AnalysisCategory)
 - [Election Audit Results](#results)
     * [Total Votes Casted](#Totalvotes)
     * [Election Results per Candidate](#CandidateResults)
@@ -39,10 +38,74 @@ I am tasked to do the following:
 6. The percentage of votes from each county out of the total count.
 7. The county with the highest turnout
 
- This process is usually done using Excel. But we would automate this process by using **Python**. **Our job is to generate a vote count report to certify this US congressional race.**
+ This process is usually done using Excel. But we would automate this process by using **Python**.<br> 
+ **Our job is to generate a vote count report to certify this US congressional race.**
 
 ## <a name="Pseudocode"></a>Pseudo Code
+1. We import the **dependencies** as below:
+```
+import csv
+import os
+```
+2. Add a variable to **load the input csv file** and **the text file** where the report will be written.
+```
+file_to_load = os.path.join("Resources", "election_results.csv")
+file_to_save = os.path.join("analysis", "election_results.txt")
+```
+3. Next,we **open** the file and **read** the file.
+```
+with open(file_to_load) as election_data:
+    reader = csv.reader(election_data)
+```
+4. Run a **For** loop to **read every record from the CSV** file. Retrieve the candidate name and county name and count their votes.
 
+ Below is the snap shot of the code:
+ ```
+     for row in reader:
+        # Add to the total vote count
+        total_votes = total_votes + 1
+
+        # Get the candidate name from each row.
+        candidate_name = row[2]
+
+        # 3: Extract the county name from each row.
+        county_name = row[1]
+
+        # If the candidate does not match any existing candidate add it to the candidate list
+        if candidate_name not in candidate_options:
+
+            # Add the candidate name to the candidate list.
+            candidate_options.append(candidate_name)
+
+            # And begin tracking that candidate's voter count.
+            candidate_votes[candidate_name] = 0
+
+        # Add a vote to that candidate's count
+        candidate_votes[candidate_name] += 1
+
+        # Check if the county does not match any existing county in the county list.
+        if county_name not in county_list:
+
+            # Add the existing county to the list of counties.
+            county_list.append(county_name)
+
+            # Begin tracking the county's vote count.
+            county_votes[county_name] = 0
+
+        # Add a vote to that county's vote count.
+        county_votes[county_name] += 1
+```
+5. Next, **open the output file and the write the results** to it. Also display the results on the terminal.
+```
+with open(file_to_save, "w") as txt_file:
+    * Print the total votes
+    * write to file.
+      txt_file.write(election_results)
+    * Print the counties and the total votes and percentage of votes for each county.
+    * Print the candidates and the total votes and percentage of votes for each candidate.
+    * Print the winning candidate and the winning county.
+    * Write the results to the output file.
+```      
 ## <a name="results"></a>Election Audit Results
 
 ### <a name="Totalvotes"></a>Total Votes casted
@@ -84,7 +147,7 @@ The table below shows the election results **per county**:
 ## <a name="Summary"></a>Election Audit Summary
 There is a statement to the election commission that explores how this script can be used for any election, with two examples for modifying the script. (4 pt)
 
-There are vrious advantages of using **python** over excel. Few of them are listed below:
+There are various advantages of using **Python** over **Excel**. That was the main reason for choosing Python for this project. Few of the advantages are listed below:
 * Automation of code 
 * Reusability of code
 * Faster execution
@@ -97,8 +160,10 @@ This code can be reused by Election Comission for any election by just changing 
 
 
 ## <a name="resources"></a> Resources
-[1] [Code for Election Analysis](Pypoll_challenge.py) 
-[2] [Election Data](election_results.csv) 
-[3] [Election Results Printed to Command Line](terminal_results.png)
-[4] [Election Results Saved to Text File](election_results.txt)
-[5] Software: Python 3.10.2, Visual Studio Code 1.64.2
+[1] [Code for Election Analysis](Pypoll_challenge.py) <br>
+[2] [Election Data](election_results.csv) <br>
+[3] [Election Results Printed to Command Line](terminal_results.png)  <br>
+[4] [Election Results Saved to Text File](election_results.txt) <br>
+[5] Software: 
+* Python 3.10.2
+* Visual Studio Code 1.64.2
